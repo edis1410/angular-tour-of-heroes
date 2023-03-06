@@ -10,8 +10,7 @@ label {
   }
   input {
     padding: .5rem;
-    width: 100%;
-    max-width: 600px;
+    width: 25%;
     box-sizing: border-box;
     display: block;
   }
