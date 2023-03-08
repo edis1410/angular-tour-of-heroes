@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-heroes',
@@ -11,7 +12,13 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService) {}
+  heroForm = this.fb.group({
+    heroName: ['', Validators.required], //TODO: dodaj pravi validator in error hendlanje
+    age: ['', Validators.min(0)],
+    gender: [''],
+  });
+
+  constructor(private heroService: HeroService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getHeroes();
@@ -21,14 +28,16 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
   }
 
-  add(name: string, age: number, gender: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-    this.heroService.addHero({ name, age, gender } as Hero).subscribe((hero) => {
-      this.heroes.push(hero);
-    });
+  add(): void {
+    let name = this.heroForm.controls['heroName'].value;
+    let age: number = Number(this.heroForm.controls['age'].value);
+    let gender = this.heroForm.controls['gender'].value;
+    this.heroService
+      .addHero({ name, age, gender } as Hero)
+      .subscribe((hero) => {
+        this.heroes.push(hero);
+      });
+
   }
 
   delete(hero: Hero): void {

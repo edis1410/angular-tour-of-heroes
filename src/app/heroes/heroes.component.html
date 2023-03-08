@@ -3,24 +3,35 @@
 <!-- seznam herojev -->
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}} | {{hero.age}} years | {{hero.gender}}
+    <a routerLink="/detail/{{ hero.id }}">
+      <span class="badge">{{ hero.id }}</span> {{ hero.name }} |
+      {{ hero.age }} years | {{ hero.gender }}
     </a>
-    <button type="button" class="delete" title="delete hero"
-      (click)="delete(hero)">x</button>
+    <button
+      type="button"
+      class="delete"
+      title="delete hero"
+      (click)="delete(hero)"
+    >
+      x
+    </button>
   </li>
 </ul>
 
-<!-- <div>
-  <label for="new-hero">Hero name: </label>
-  <input id="new-hero" #heroName />
-  <button
-    type="button"
-    class="add-button"
-    (click)="add(heroName.value); heroName.value = ''"
-  >
-    Add hero
-  </button>
-</div> -->
+<form [formGroup]="heroForm" (ngSubmit)="add()">
+  <label for="hero-name">Hero Name*: </label>
+  <input id="hero-name" type="text" formControlName="heroName" />
 
-<app-hero-form></app-hero-form>
+  <label for="age">Age*: </label>
+  <input id="age" type="text" formControlName="age" />
+
+  <label for="gender">Gender: </label>
+  <select name="gender" id="gender" formControlName="gender">
+    <option value="" disabled selected>Select your option</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+
+  <p>Complete the fields with a "*" to enable button.</p>
+  <button type="submit" [disabled]="!heroForm.valid">Add hero</button>
+</form>
