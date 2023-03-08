@@ -77,7 +77,8 @@ export class HeroService {
   };
 
   /** POST: add a new hero to the server */
-  addHero(hero: {heroName: string | null, age: number | null, gender?: string | null | undefined}): Observable<Hero> {
+  addHero(hero: Hero): Observable<Hero> {
+    console.log(hero)
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))

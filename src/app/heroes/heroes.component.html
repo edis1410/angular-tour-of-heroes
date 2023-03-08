@@ -20,8 +20,16 @@
 
 <form [formGroup]="heroForm" (ngSubmit)="add()">
   <label for="hero-name">Hero Name*: </label>
-  <input onClick="this.select()" id="hero-name" type="text" formControlName="heroName" required placeholder="Name"/>
-  <div *ngIf="heroName?.invalid"  class="alert">This field is required.</div>
+  <input onClick="this.select()" id="hero-name" type="text" formControlName="name" required placeholder="Name"/>
+  <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+    class="alert alert-danger">
+  <div *ngIf="name?.errors?.['required']">
+    Name is required.
+  </div>
+</div>
+  <div class="alert alert-danger" *ngIf="!name?.invalid && !heroForm.valid && forbiddenNameValidator">
+    The name is already taken.
+  </div>
 
   <label for="age">Age*: </label>
   <input onClick="this.select()" id="age" type="text" formControlName="age" required/>
@@ -35,5 +43,5 @@
   </select>
 
   <p class="comp">Complete the fields with a "*" to enable button.</p>
-  <button type="submit" [disabled]="!heroForm.valid">Add hero</button>
+  <button id="submit" type="submit" [disabled]="!heroForm.valid">Add hero</button>
 </form>
