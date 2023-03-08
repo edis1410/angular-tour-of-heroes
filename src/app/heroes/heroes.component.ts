@@ -13,10 +13,17 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
 
   heroForm = this.fb.group({
-    heroName: ['', Validators.required], //TODO: dodaj pravi validator in error hendlanje
-    age: ['', Validators.min(0)],
+    heroName: ['Placeholder', Validators.required], //TODO: dodaj pravi validator in error hendlanje
+    age: ['20', Validators.min(0)],
     gender: [''],
   });
+  get heroName() {
+    return this.heroForm.get('heroName');
+  }
+  get age() {
+    return this.heroForm.get('age');
+  }
+
 
   constructor(private heroService: HeroService, private fb: FormBuilder) {}
 
@@ -37,12 +44,10 @@ export class HeroesComponent implements OnInit {
       .subscribe((hero) => {
         this.heroes.push(hero);
       });
-
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter((h) => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe();
   }
-
 }

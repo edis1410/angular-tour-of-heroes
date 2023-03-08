@@ -20,10 +20,12 @@
 
 <form [formGroup]="heroForm" (ngSubmit)="add()">
   <label for="hero-name">Hero Name*: </label>
-  <input id="hero-name" type="text" formControlName="heroName" />
+  <input onClick="this.select()" id="hero-name" type="text" formControlName="heroName" required placeholder="Name"/>
+  <div *ngIf="heroName?.invalid"  class="alert">This field is required.</div>
 
   <label for="age">Age*: </label>
-  <input id="age" type="text" formControlName="age" />
+  <input onClick="this.select()" id="age" type="text" formControlName="age" required/>
+  <div *ngIf="age?.invalid" class="alert">The age must be 0 or higher.</div>
 
   <label for="gender">Gender: </label>
   <select name="gender" id="gender" formControlName="gender">
@@ -32,6 +34,6 @@
     <option value="Female">Female</option>
   </select>
 
-  <p>Complete the fields with a "*" to enable button.</p>
+  <p class="comp">Complete the fields with a "*" to enable button.</p>
   <button type="submit" [disabled]="!heroForm.valid">Add hero</button>
 </form>
