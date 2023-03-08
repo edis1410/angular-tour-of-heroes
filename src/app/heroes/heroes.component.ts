@@ -39,6 +39,9 @@ export class HeroesComponent implements OnInit {
     let name = this.heroForm.controls['heroName'].value;
     let age: number = Number(this.heroForm.controls['age'].value);
     let gender = this.heroForm.controls['gender'].value;
+    if (gender === "") {
+      gender = "Not specified"
+    }
     this.heroService
       .addHero({ name, age, gender } as Hero)
       .subscribe((hero) => {
