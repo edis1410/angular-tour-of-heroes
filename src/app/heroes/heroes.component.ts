@@ -29,9 +29,9 @@ export class HeroesComponent {
     );
 
   public heroForm = this.fb.group({
-    name: this.fb.control<string | null>('Placeholder', [Validators.required]),
-    age: this.fb.control<number | null>(20, [Validators.min(0)]),
-    gender: this.fb.control<string | null>(null),
+    name: this.fb.control<string | null>(null, [Validators.required]),
+    age: this.fb.control<number | null>(null, [Validators.min(0),Validators.pattern("^[0-9]*$")]),
+    gender: this.fb.control<string | null>(''),
   });
 
   get name() {

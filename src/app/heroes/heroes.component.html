@@ -20,20 +20,21 @@
 
 <form [formGroup]="heroForm" (ngSubmit)="add()">
   <label for="hero-name">Hero Name*: </label>
-  <input onClick="select()" id="hero-name" type="text" formControlName="name" required placeholder="Name"/>
+  <input onClick="select()" id="hero-name" type="text" formControlName="name" required placeholder="Wingman"/>
   <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
     class="alert alert-danger">
   <div *ngIf="name?.errors?.['required']">
     Name is required.
   </div>
 </div>
-  <div class="alert alert-danger" *ngIf="!name?.invalid && !heroForm.valid && forbiddenNameValidator">
+  <div class="alert alert-danger" *ngIf=" name?.valid && age?.valid && heroForm.invalid">
+
     The name is already taken.
   </div>
 
   <label for="age">Age*: </label>
-  <input onClick="select()" id="age" type="text" formControlName="age" required/>
-  <div *ngIf="age?.invalid" class="alert">The age must be 0 or higher.</div>
+  <input onClick="select()" id="age" type="text" formControlName="age" required placeholder="20"/>
+  <div *ngIf="age?.invalid && (age?.dirty || age?.touched)" class="alert" >The age must be 0 or higher.</div>
 
   <label for="gender">Gender: </label>
   <select name="gender" id="gender" formControlName="gender">
