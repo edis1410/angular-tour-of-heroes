@@ -2,7 +2,7 @@
 
 <!-- seznam herojev -->
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
+  <li *ngFor="let hero of heroes$ | async">
     <a routerLink="/detail/{{ hero.id }}">
       <span class="badge">{{ hero.id }}</span> {{ hero.name }} |
       {{ hero.age }} years | {{ hero.gender }}
@@ -20,7 +20,7 @@
 
 <form [formGroup]="heroForm" (ngSubmit)="add()">
   <label for="hero-name">Hero Name*: </label>
-  <input onClick="this.select()" id="hero-name" type="text" formControlName="name" required placeholder="Name"/>
+  <input onClick="select()" id="hero-name" type="text" formControlName="name" required placeholder="Name"/>
   <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
     class="alert alert-danger">
   <div *ngIf="name?.errors?.['required']">
@@ -32,7 +32,7 @@
   </div>
 
   <label for="age">Age*: </label>
-  <input onClick="this.select()" id="age" type="text" formControlName="age" required/>
+  <input onClick="select()" id="age" type="text" formControlName="age" required/>
   <div *ngIf="age?.invalid" class="alert">The age must be 0 or higher.</div>
 
   <label for="gender">Gender: </label>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './hero';
-import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -78,7 +77,6 @@ export class HeroService {
 
   /** POST: add a new hero to the server */
   addHero(hero: Hero): Observable<Hero> {
-    console.log(hero)
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
