@@ -1,7 +1,12 @@
-<div (click)="dropdownToggle()">{{label}}</div>
-<div *ngIf="showDropdown">
-  <div *ngFor="let option of options" (click)="selectedOption(option); dropdownToggle()">{{option}}</div>
+<div class="parent" (click)="dropdownToggle()">{{ label }}</div>
+<div class="child" *ngIf="showDropdown">
+  <div
+    class="opt"
+    *ngFor="let option of options"
+    (click)="selectedOption(option); dropdownToggle()"
+  >
+    {{ option }}
+  </div>
 </div>
-<!-- <select (change)="selectedGender($event)" name="gender" id="gender" formControlName="gender">
-  <option *ngFor="let option of options">{{option}}</option>
-</select> -->
+
+{{value}}

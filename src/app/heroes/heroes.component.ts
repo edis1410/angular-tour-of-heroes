@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -40,30 +40,16 @@ export class HeroesComponent {
   get age() {
     return this.heroForm.get('age');
   }
-  getGender(g: string){
-    this.heroForm.patchValue({
-      gender: g
-    })
-  }
+  // getGender(g: string){
+  //   this.heroForm.patchValue({
+  //     gender: g
+  //   })
+  // }
   constructor(
     private heroService: HeroService,
     private fb: FormBuilder,
     private heroesFasadeService: ObservableService
   ) {}
-
-  // ngOnInit(): void {
-  //   this.getHeroes();
-  // }
-
-  // getHeroes(): void {
-  //   this.heroes$ = this.heroService.getHeroes().pipe(
-  //     tap((heroes: Hero[]) => {
-  //       this.heroForm.addValidators(
-  //           this.forbiddenNameValidator(heroes.map((hero: Hero) => hero.name))
-  //         );
-  //     })
-  //   )
-  // }
 
   public add(): void {
     if (this.heroForm.valid) {
@@ -77,7 +63,6 @@ export class HeroesComponent {
   }
 
   delete(hero: Hero): void {
-    // this.heroes$ = this.heroes$.filter((h) => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe((response) => {
         this.heroesFasadeService.deleteHeroes(hero);
     });

@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownComponent } from "../shared/components/dropdown/dropdown.component";
 
 @NgModule({
-    declarations: [HeroesComponent],
-    imports: [CommonModule, HeroesRoutingModule, ReactiveFormsModule, DropdownComponent]
+    declarations: [HeroesComponent, DropdownComponent],
+    imports: [CommonModule, HeroesRoutingModule, ReactiveFormsModule]
 })
 export class HeroesModule {}

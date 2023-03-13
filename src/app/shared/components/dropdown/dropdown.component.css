@@ -1,5 +1,18 @@
-div{
+.parent{
   border: 1px solid black;
   width: 25%;
   padding: .5rem;
+}
+.child{
+  border: 1px solid black;
+  width: 25%;
+  padding: .5rem;
+  border-top: none;
+}
+.opt{
+  padding: .1rem;
+}
+.opt:hover{
+  background-color: #e6e6e6;
+  padding: .25rem;
 }
