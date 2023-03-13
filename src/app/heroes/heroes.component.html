@@ -41,8 +41,8 @@
     <option value="Male">Male</option>
     <option value="Female">Female</option>
   </select> -->
-  
-  <app-dropdown (clickEvent)="getGender($event)"></app-dropdown>
+  <label for="gender">Gender*: </label>
+  <app-dropdown [label]="'Choose gender'" [options]="['Male','Female']" (clickEvent)="getGender($event)"></app-dropdown>
 
   <p class="comp">Complete the fields with a "*" to enable button.</p>
   <button id="submit" type="submit" [disabled]="!heroForm.valid">Add hero</button>

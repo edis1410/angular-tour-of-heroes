@@ -1,6 +1,7 @@
-<label for="gender">Gender: </label>
-<select (change)="selectedGender($event)" name="gender" id="gender" formControlName="gender">
-  <option value="Not selected" disabled selected>Choose gender</option>
-  <option value="Male">Male</option>
-  <option value="Female">Female</option>
-</select>
+<div (click)="dropdownToggle()">{{label}}</div>
+<div *ngIf="showDropdown">
+  <div *ngFor="let option of options" (click)="selectedOption(option); dropdownToggle()">{{option}}</div>
+</div>
+<!-- <select (change)="selectedGender($event)" name="gender" id="gender" formControlName="gender">
+  <option *ngFor="let option of options">{{option}}</option>
+</select> -->

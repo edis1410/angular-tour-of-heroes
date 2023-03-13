@@ -40,9 +40,9 @@ export class HeroesComponent {
   get age() {
     return this.heroForm.get('age');
   }
-  getGender(g: any){
+  getGender(g: string){
     this.heroForm.patchValue({
-      gender: g.target.value
+      gender: g
     })
   }
   constructor(

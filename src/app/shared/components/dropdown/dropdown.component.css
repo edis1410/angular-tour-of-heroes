@@ -1,8 +1,5 @@
-label {
-    display: block;
-    margin: 1rem 0rem .5rem 0rem;
-  }
-select {
-    width: 25%;
-    padding: .5rem;
-  }
+div{
+  border: 1px solid black;
+  width: 25%;
+  padding: .5rem;
+}
