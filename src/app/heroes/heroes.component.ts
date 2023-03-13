@@ -30,7 +30,10 @@ export class HeroesComponent {
 
   public heroForm = this.fb.group({
     name: this.fb.control<string | null>(null, [Validators.required]),
-    age: this.fb.control<number | null>(null, [Validators.min(0),Validators.pattern("^[0-9]*$")]),
+    age: this.fb.control<number | null>(null, [
+      Validators.min(0),
+      Validators.pattern('^[0-9]*$'),
+    ]),
     gender: this.fb.control<string | null>(''),
   });
 
@@ -40,11 +43,7 @@ export class HeroesComponent {
   get age() {
     return this.heroForm.get('age');
   }
-  // getGender(g: string){
-  //   this.heroForm.patchValue({
-  //     gender: g
-  //   })
-  // }
+
   constructor(
     private heroService: HeroService,
     private fb: FormBuilder,
@@ -64,7 +63,7 @@ export class HeroesComponent {
 
   delete(hero: Hero): void {
     this.heroService.deleteHero(hero.id).subscribe((response) => {
-        this.heroesFasadeService.deleteHeroes(hero);
+      this.heroesFasadeService.deleteHeroes(hero);
     });
   }
 

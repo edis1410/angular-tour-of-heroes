@@ -1,21 +1,30 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dropdown',
-  standalone: false,
-  // imports: [CommonModule, ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css']
+  styleUrls: ['./dropdown.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: DropdownComponent,
+      multi: true,
+    }
+  ]
 })
 export class DropdownComponent implements ControlValueAccessor{
   @Input() label: string = '';
   @Input() options: string[] = [];
-  @Output() clickEvent= new EventEmitter<string>();
 
   public showDropdown = false;
-
+  public arrowDown = faArrowDown;
+  public arrowUp = faArrowUp;
   public value: string = '';
   public disabled: boolean = false;
 

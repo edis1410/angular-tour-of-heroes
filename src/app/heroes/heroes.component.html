@@ -35,8 +35,8 @@
   <input onClick="select()" id="age" type="text" formControlName="age" required placeholder="20"/>
   <div *ngIf="age?.invalid && (age?.dirty || age?.touched)" class="alert" >The age must be 0 or higher.</div>
 
-  <label for="gender">Gender*: </label>
-  <app-dropdown [label]="'Choose gender'" [options]="['Male','Female','Other']" [formControlName]="'gender'"></app-dropdown>
+  <label for="gender">Gender: </label>
+  <app-dropdown [label]="'Choose gender'" [options]="['Male','Female','Other']" formControlName="gender"></app-dropdown>
 
   <p class="comp">Complete the fields with a "*" to enable button.</p>
   <button id="submit" type="submit" [disabled]="!heroForm.valid">Add hero</button>
