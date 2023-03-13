@@ -1,1 +1,6 @@
-<p>dropdown works!</p>
+<label for="gender">Gender: </label>
+<select (change)="selectedGender($event)" name="gender" id="gender" formControlName="gender">
+  <option value="Not selected" disabled selected>Choose gender</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>

@@ -23,25 +23,26 @@
   <input onClick="select()" id="hero-name" type="text" formControlName="name" required placeholder="Wingman"/>
   <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
     class="alert alert-danger">
-  <div *ngIf="name?.errors?.['required']">
-    Name is required.
+    <div *ngIf="name?.errors?.['required']">
+      Name is required.
+    </div>
   </div>
-</div>
-  <div class="alert alert-danger" *ngIf=" name?.valid && age?.valid && heroForm.invalid">
-
-    The name is already taken.
-  </div>
+    <div class="alert alert-danger" *ngIf=" name?.valid && age?.valid && heroForm.invalid">
+      The name is already taken.
+    </div>
 
   <label for="age">Age*: </label>
   <input onClick="select()" id="age" type="text" formControlName="age" required placeholder="20"/>
   <div *ngIf="age?.invalid && (age?.dirty || age?.touched)" class="alert" >The age must be 0 or higher.</div>
 
-  <label for="gender">Gender: </label>
+  <!-- <label for="gender">Gender: </label>
   <select name="gender" id="gender" formControlName="gender">
-    <option value="" disabled selected>Select your option</option>
+    <option value="" disabled selected>Choose gender</option>
     <option value="Male">Male</option>
     <option value="Female">Female</option>
-  </select>
+  </select> -->
+  
+  <app-dropdown (clickEvent)="getGender($event)"></app-dropdown>
 
   <p class="comp">Complete the fields with a "*" to enable button.</p>
   <button id="submit" type="submit" [disabled]="!heroForm.valid">Add hero</button>
