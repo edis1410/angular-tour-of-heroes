@@ -1,0 +1,14 @@
+<div class="parent" (click)="dropdownToggle()">
+  {{ label }} 
+  <fa-icon *ngIf="showDropdown" [icon]="arrowUp"></fa-icon>
+  <fa-icon *ngIf="!showDropdown" [icon]="arrowDown"></fa-icon>
+</div>
+<div class="child" *ngIf="showDropdown">
+  <div
+    class="opt"
+    *ngFor="let option of options"
+    (click)="selectedOption(option); dropdownToggle()"
+  >
+    {{ option }}
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -29,9 +29,12 @@ export class HeroesComponent {
     );
 
   public heroForm = this.fb.group({
-    name: this.fb.control<string | null>('Placeholder', [Validators.required]),
-    age: this.fb.control<number | null>(20, [Validators.min(0)]),
-    gender: this.fb.control<string | null>(null),
+    name: this.fb.control<string | null>(null, [Validators.required]),
+    age: this.fb.control<number | null>(null, [
+      Validators.min(0),
+      Validators.pattern('^[0-9]*$'),
+    ]),
+    gender: this.fb.control<string | null>(''),
   });
 
   get name() {
@@ -47,20 +50,6 @@ export class HeroesComponent {
     private heroesFasadeService: ObservableService
   ) {}
 
-  // ngOnInit(): void {
-  //   this.getHeroes();
-  // }
-
-  // getHeroes(): void {
-  //   this.heroes$ = this.heroService.getHeroes().pipe(
-  //     tap((heroes: Hero[]) => {
-  //       this.heroForm.addValidators(
-  //           this.forbiddenNameValidator(heroes.map((hero: Hero) => hero.name))
-  //         );
-  //     })
-  //   )
-  // }
-
   public add(): void {
     if (this.heroForm.valid) {
       const heroFormData = this.heroForm.getRawValue();
@@ -73,9 +62,8 @@ export class HeroesComponent {
   }
 
   delete(hero: Hero): void {
-    // this.heroes$ = this.heroes$.filter((h) => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe((response) => {
-        this.heroesFasadeService.deleteHeroes(hero);
+      this.heroesFasadeService.deleteHeroes(hero);
     });
   }
 
