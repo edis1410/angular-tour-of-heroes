@@ -1,4 +1,4 @@
-<div class="parent" (click)="dropdownToggle()">
+<div class="parent" (click)="dropdownToggle()" (clickOutside)="showDropdown = false">
   {{ label }} 
   <fa-icon *ngIf="showDropdown" [icon]="arrowUp"></fa-icon>
   <fa-icon *ngIf="!showDropdown" [icon]="arrowDown"></fa-icon>
