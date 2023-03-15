@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { MessageService } from './message.service';
 import { Person } from './person';
+import { StarWarsApiResponse } from './star-wars-api-response';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +26,8 @@ export class StarWarsApiService {
   ) {}
 
   getPeople(): Observable<Person[]> {
-    return this.httpClient.get<Person[]>(this.apiURL).pipe(
-      map((data: any) =>
+    return this.httpClient.get<StarWarsApiResponse>(this.apiURL).pipe(
+      map((data: StarWarsApiResponse) =>
         data.results.map((person: Person) => ({
           name: person.name,
           height: person.height,

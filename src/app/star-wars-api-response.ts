@@ -1,4 +1,4 @@
-export interface Response {
+export interface StarWarsApiResponse {
     count: number;
     previous: string;
     next: string;
