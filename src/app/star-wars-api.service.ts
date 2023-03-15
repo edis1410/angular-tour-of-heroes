@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 import { MessageService } from './message.service';
 import { Person } from './person';
 
@@ -8,7 +8,7 @@ import { Person } from './person';
   providedIn: 'root',
 })
 export class StarWarsApiService {
-  private apiURL = 'https://swapi.dev/api/people/';
+  private apiURL = 'https://swapi.dev/api/people';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,7 +25,14 @@ export class StarWarsApiService {
   ) {}
 
   getPeople(): Observable<Person[]> {
-    return this.httpClient.get<Person[]>(this.apiURL, this.httpOptions).pipe(
+    return this.httpClient.get<Person[]>(this.apiURL).pipe(
+      map((data: any) =>
+        data.results.map((person: Person) => ({
+          name: person.name,
+          height: person.height,
+          mass: person.mass,
+        }))
+      ),
       tap((_) => this.log('fetched people')),
       catchError(this.handleError<Person[]>('getPeople', []))
     );
