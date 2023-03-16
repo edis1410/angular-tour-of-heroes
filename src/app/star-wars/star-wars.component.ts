@@ -40,24 +40,19 @@ export class StarWarsComponent {
     column: string,
     direction = 'desc'
   ): any[] {
-    if(column === 'name'){
       let sortedArray = (list || []).sort((a, b) => {
-        if (a[column] > b[column]) {
+        if(Number(a[column])){
+          return direction === 'desc' ? a[column] - b[column] : b[column] - a[column];
+        }
+        else if (a[column] > b[column]) {
           return direction === 'desc' ? 1 : -1;
         }
-        if (a[column] < b[column]) {
+        else if (a[column] < b[column]) {
           return direction === 'desc' ? -1 : 1;
         }
         return 0;
       });
       return sortedArray;
-    }
-    else{
-    let sortedArray = (list || []).sort((a, b) => {
-     return direction === 'desc' ? a[column] - b[column] : b[column] - a[column];
-    });
-    return sortedArray;
-  }
   }
 
   sortOn(column: string) {
