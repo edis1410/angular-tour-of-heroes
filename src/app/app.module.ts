@@ -18,9 +18,9 @@ import { MessagesModule } from './messages/messages.module';
     HttpClientModule,
     MessagesModule,
     FontAwesomeModule,
-    // switcher === true ? HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-    //   dataEncapsulation: false,
-    // }): [],
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+       dataEncapsulation: false,
+     }),
   ],
   providers: [],
   bootstrap: [AppComponent],
