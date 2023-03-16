@@ -1,6 +1,9 @@
 table{
     margin-top: 2rem;
 }
+th{
+  user-select: none;
+}
 table, th , td {
     margin-top: 1 rem;
     border: 1px solid grey;

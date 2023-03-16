@@ -1,8 +1,8 @@
 <table>
   <tr>
-    <th>Name</th>
-    <th>Height(cm)</th>
-    <th>Weight(kg)</th>
+    <th (click)="sortOn('name')">Name</th>
+    <th (click)="sortOn('height')">Height(cm)</th>
+    <th (click)="sortOn('mass')">Weight(kg)</th>
   </tr>
   <tr *ngFor="let person of people$ | async">
     <td>{{person?.name}}</td>
