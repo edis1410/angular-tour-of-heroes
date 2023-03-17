@@ -1,11 +1,11 @@
-<div class="parent" (click)="dropdownToggle()" (clickOutside)="showDropdown = false">
+<div class="border w-52 p-2 box-border hover:cursor-pointer" (click)="dropdownToggle()" (clickOutside)="showDropdown = false">
   {{ label }} 
-  <fa-icon *ngIf="showDropdown" [icon]="arrowUp"></fa-icon>
-  <fa-icon *ngIf="!showDropdown" [icon]="arrowDown"></fa-icon>
+  <fa-icon class="float-right" *ngIf="showDropdown" [icon]="arrowUp"></fa-icon>
+  <fa-icon class="float-right" *ngIf="!showDropdown" [icon]="arrowDown"></fa-icon>
 </div>
-<div class="child" *ngIf="showDropdown">
+<div class="border w-52 p-2 border-t-0 box-border" *ngIf="showDropdown">
   <div
-    class="opt"
+    class="p-1 hover:bg-slate-300"
     *ngFor="let option of options"
     (click)="selectedOption(option); dropdownToggle()"
   >

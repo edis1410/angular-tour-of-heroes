@@ -1,14 +1,23 @@
 <div class="ml-4" id="search-component">
-  <label class="mt-4 ml-4 block text-base font-bold " for="search-box">Hero Search:</label>
+  <label class="mt-4 block text-base font-bold" for="search-box"
+    >Hero Search:</label
+  >
   <input
-    class="mt-2 ml-4 border-2 w-44"
+    class="mt-2 w-44 border-2"
     #searchBox
     id="search-box"
     (input)="search(searchBox.value)"
   />
 
-  <ul class="block ml-4 bg-slate-50 w-44 border p-1 cursor-pointer">
-    <li class="hover:bg-slate-400 p-1" *ngFor="let hero of heroes$ | async" routerLink="/detail/{{ hero.id }}">
+  <ul
+    *ngIf="searchBox.value !== ''"
+    class="ml-4 block w-44 cursor-pointer border bg-slate-50 p-1"
+  >
+    <li
+      class="p-1 hover:bg-slate-400"
+      *ngFor="let hero of heroes$ | async"
+      routerLink="/detail/{{ hero.id }}"
+    >
       <a class="select-none">
         {{ hero.name }}
       </a>

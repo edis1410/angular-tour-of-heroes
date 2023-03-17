@@ -10,7 +10,6 @@ import { ClickOutsideDirective } from './click-outside.directive';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule, ClickOutsideDirective],
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

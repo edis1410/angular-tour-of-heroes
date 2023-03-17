@@ -15,7 +15,6 @@ import { ObservableService } from './observable.service';
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent {
   public heroes$: Observable<Hero[]> = this.heroesFasadeService

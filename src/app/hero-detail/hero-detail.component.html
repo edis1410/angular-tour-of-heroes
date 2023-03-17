@@ -1,26 +1,36 @@
 <div class="mt-4 ml-4" *ngIf="hero">
-  <h2 class="font-bold text-xl">{{ hero.name | uppercase }} Details</h2>
+  <h2 class="text-xl font-bold">{{ hero.name | uppercase }} Details</h2>
   <div>id: {{ hero.id }}</div>
   <div class="mt-2">
     <label class="text-right" for="hero-name">Hero name: </label>
-    <input class="border-2 " id="hero-name" [(ngModel)]="hero.name" placeholder="name" />
+    <input
+      class="border-2"
+      id="hero-name"
+      [(ngModel)]="hero.name"
+      placeholder="name"
+    />
   </div>
   <div class="mt-2">
     <label class="text-right" for="hero-name">Hero age: </label>
-    <input class="border-2" id="hero-name" [(ngModel)]="hero.age" placeholder="age" />
+    <input
+      class="border-2"
+      id="hero-name"
+      [(ngModel)]="hero.age"
+      placeholder="age"
+    />
   </div>
 </div>
 <div class="mt-4 ml-4">
-<button
-  class="bg-slate-500 border rounded text-white px-4 py-2 hover:bg-slate-800"
-  (click)="goBack()"
->
-  Go back
-</button>
-<button
-  class="rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
-  (click)="save()"
->
-  Save
-</button>
+  <button
+    class="mr-2 rounded border-b-4 border-slate-700 bg-slate-500 py-2 px-4 font-bold text-white hover:border-slate-500 hover:bg-slate-400"
+    (click)="goBack()"
+  >
+    Go back
+  </button>
+  <button
+    class="mr-2 rounded border-b-4 border-slate-700 bg-slate-500 py-2 px-4 font-bold text-white hover:border-slate-500 hover:bg-slate-400"
+    (click)="save()"
+  >
+    Save
+  </button>
 </div>
