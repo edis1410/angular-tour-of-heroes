@@ -1,8 +1,24 @@
-<h1 class="font-bold" >{{ title }}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-  <a routerLink="/star-wars">Star Wars</a>
-</nav>
+<div class="m-0 h-12 w-full bg-slate-500 p-0 align-baseline">
+  <h1 class="inline-block h-12 pl-8 w-1/2 font-sans text-3xl font-bold ">
+    {{ title }}
+  </h1>
+  <nav class="inline-block h-12 w-1/2 text-right">
+    <a
+      class="mr-4 inline-block h-12 p-1 no-underline hover:text-slate-400"
+      routerLink="/dashboard"
+      >Dashboard</a
+    >
+    <a
+      class="mr-4 inline-block h-12 p-1 no-underline hover:text-slate-400"
+      routerLink="/heroes"
+      >Heroes</a
+    >
+    <a
+      class="mr-10 inline-block h-12 p-1 no-underline hover:text-slate-400"
+      routerLink="/star-wars"
+      >Star Wars</a
+    >
+  </nav>
+</div>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

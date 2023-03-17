@@ -1,7 +1,7 @@
-<h2 class="text-center text-3xl font-bold">Top Heroes</h2>
-<div class="flex flex-row flex-wrap justify-around">
+<h2 class="pt-4 text-center text-3xl font-bold">Top Heroes</h2>
+<div class="mt-4 flex flex-row flex-wrap justify-center">
   <a
-    class="box-content inline-block rounded-md border-2 bg-slate-600 p-4 text-xl text-white"
+    class="mr-4 box-content inline-block rounded-md bg-slate-500 p-4 text-xl text-white hover:bg-slate-600"
     *ngFor="let hero of heroes"
     routerLink="/detail/{{ hero.id }}"
   >
