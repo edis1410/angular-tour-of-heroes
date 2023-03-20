@@ -6,7 +6,7 @@ import { Person } from '../person';
 @Component({
   selector: 'app-star-wars',
   templateUrl: './star-wars.component.html',
-  styleUrls: ['../../../dist/output.css'],
+  styleUrls: ['./star-wars.component.css'],
 })
 export class StarWarsComponent {
   public people$: Observable<Person[]> = this.swfs.getPeople$();
