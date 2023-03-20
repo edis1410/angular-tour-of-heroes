@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 
@@ -15,12 +9,16 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private login: LoginService, private fb: FormBuilder, private router: Router) {}
-  
+  constructor(
+    private login: LoginService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
   logErr = false;
 
   public loginForm = this.fb.group({
-    email: this.fb.control<string | null>(null, [Validators.required]),
+    email: this.fb.control<string | null>(null, [Validators.required, Validators.email]),
     password: this.fb.control<string>('', [
       Validators.required,
       Validators.min(6),
@@ -37,7 +35,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.login.loginTry(this.email?.value!, this.password?.value!).then(
         () => this.router.navigate(['/dashboard']),
-        () => this.logErr = true
+        () => (this.logErr = true)
       );
     } else {
       console.log('Handle errors');

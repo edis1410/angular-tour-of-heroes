@@ -31,11 +31,24 @@
         />
       </div>
       <div
-      class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
-      *ngIf="logErr === true"
-    >
-      The email or password is wrong.
-    </div>
+        class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+      >
+        <div *ngIf="email?.errors?.['required']">The email is required</div>
+        <div *ngIf="email?.errors?.['email']">The email format is not correct</div>
+      </div>
+      <div
+        class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+      >
+        <div *ngIf="password?.errors?.['required']">The password is required</div>
+      </div>
+      <div
+        class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+        *ngIf="logErr === true"
+      >
+        The email or password is wrong.
+      </div>
       <button
         type="submit"
         class="group relative flex w-full cursor-pointer justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500"
