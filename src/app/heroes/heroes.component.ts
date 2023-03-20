@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -11,12 +11,14 @@ import {
 } from '@angular/forms';
 import { Observable, tap } from 'rxjs';
 import { ObservableService } from './observable.service';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
 })
-export class HeroesComponent {
+export class HeroesComponent implements OnInit {
   public heroes$: Observable<Hero[]> = this.heroesFasadeService
     .getHeroes$()
     .pipe(
@@ -46,8 +48,15 @@ export class HeroesComponent {
   constructor(
     private heroService: HeroService,
     private fb: FormBuilder,
-    private heroesFasadeService: ObservableService
+    private heroesFasadeService: ObservableService,
+    private login: LoginService,
+    private router: Router
   ) {}
+  ngOnInit(): void {
+    if (this.login.loggedIn === false) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   public add(): void {
     if (this.heroForm.valid) {

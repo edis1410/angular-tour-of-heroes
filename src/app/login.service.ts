@@ -17,7 +17,6 @@ export class LoginService {
   loggedIn = false;
 
   public loginTry(email: string, password: string): Promise<UserCredential> {
-    this.loggedIn = true
     return signInWithEmailAndPassword(this.auth, email, password);
   }
   public logOut(): Promise<void> {

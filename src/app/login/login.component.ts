@@ -46,6 +46,7 @@ export class LoginComponent {
   }
 
   public onSuccess(): void {
+    this.login.loggedIn = true;
     this.router.navigate(['/dashboard']);
   }
 

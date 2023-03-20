@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Hero } from '../hero';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -14,10 +15,16 @@ export class HeroDetailComponent {
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private login: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    if (this.login.loggedIn === false) {
+      this.router.navigate(['/login']);
+    }
+    else
     this.getHero();
   }
 

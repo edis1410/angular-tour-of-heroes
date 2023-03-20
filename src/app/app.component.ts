@@ -18,6 +18,7 @@ export class AppComponent {
     );
   }
   public onSuccess(): void {
+    this.login.loggedIn = false;
     this.router.navigate(['/login']);
   }
 
