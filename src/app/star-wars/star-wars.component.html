@@ -1,12 +1,23 @@
-<table>
-  <tr>
-    <th (click)="sortOn('name')">Name</th>
-    <th (click)="sortOn('height')">Height(cm)</th>
-    <th (click)="sortOn('mass')">Weight(kg)</th>
-  </tr>
-  <tr *ngFor="let person of people$ | async">
-    <td>{{person?.name}}</td>
-    <td>{{person?.height}}</td>
-    <td>{{person?.mass}}</td>
-  </tr>
-</table>
+<div class="relative mt-5 ml-4 w-1/2 overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-center text-sm text-gray-500 dark:text-gray-400">
+    <tr
+      class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <th class="px-6 py-3" (click)="sortOn('name')">Name</th>
+      <th class="px-6 py-3" (click)="sortOn('height')">Height(cm)</th>
+      <th class="px-6 py-3" (click)="sortOn('mass')">Weight(kg)</th>
+    </tr>
+    <tr
+      class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+      *ngFor="let person of people$ | async"
+    >
+      <td
+        class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+      >
+        {{ person?.name }}
+      </td>
+      <td class="px-6 py-4">{{ person?.height }}</td>
+      <td class="px-6 py-4">{{ person?.mass }}</td>
+    </tr>
+  </table>
+</div>

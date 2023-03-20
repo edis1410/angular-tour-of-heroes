@@ -1,15 +1,36 @@
-<!-- div za displayanje detajlov -->
-<div *ngIf="hero">
-  <h2>{{ hero.name | uppercase }} Details</h2>
+<div class="mt-4 ml-4" *ngIf="hero">
+  <h2 class="text-xl font-bold">{{ hero.name | uppercase }} Details</h2>
   <div>id: {{ hero.id }}</div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name" />
+  <div class="mt-2">
+    <label class="text-right" for="hero-name">Hero name: </label>
+    <input
+      class="border-2"
+      id="hero-name"
+      [(ngModel)]="hero.name"
+      placeholder="name"
+    />
   </div>
-  <div>
-    <label for="hero-name">Hero age: </label>
-    <input id="hero-name" [(ngModel)]="hero.age" placeholder="age" />
+  <div class="mt-2">
+    <label class="text-right" for="hero-name">Hero age: </label>
+    <input
+      class="border-2"
+      id="hero-name"
+      [(ngModel)]="hero.age"
+      placeholder="age"
+    />
   </div>
 </div>
-<button type="button" (click)="goBack()">Go back</button>
-<button type="button" (click)="save()">Save</button>
+<div class="mt-4 ml-4">
+  <button
+    class="mr-2 rounded border-b-4 border-slate-700 bg-slate-500 py-2 px-4 font-bold text-white hover:border-slate-500 hover:bg-slate-400"
+    (click)="goBack()"
+  >
+    Go back
+  </button>
+  <button
+    class="mr-2 rounded border-b-4 border-slate-700 bg-slate-500 py-2 px-4 font-bold text-white hover:border-slate-500 hover:bg-slate-400"
+    (click)="save()"
+  >
+    Save
+  </button>
+</div>
