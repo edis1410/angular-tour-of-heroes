@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AppModule } from './app.module';
+import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,20 @@ import { AppModule } from './app.module';
 })
 export class AppComponent {
   title = 'Tour of Heroes';
+
+  constructor(public login: LoginService, private router: Router) {}
+  public logOutTry(): void {
+    console.log(this.login.isLoggedIn())
+    this.login.logOut().then(
+      () => this.onSuccess(),
+      () => this.onFail()
+    );
+  }
+  public onSuccess(): void {
+    this.router.navigate(['/login']);
+  }
+
+  public onFail(): void {
+    console.log('failed logout')
+  }
 }

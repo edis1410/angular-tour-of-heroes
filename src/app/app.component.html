@@ -17,10 +17,11 @@
       >Heroes</a
     >
     <a
-      class="mr-10 inline-block h-12 p-1 no-underline hover:text-slate-400"
+      class="mr-4 inline-block h-12 p-1 no-underline hover:text-slate-400"
       routerLink="/star-wars"
       >Star Wars</a
     >
+    <button *ngIf="login.isLoggedIn()" (click)="logOutTry()" class="mr-6 border p-2 rounded-md bg-red-100 hover:bg-red-300">Log out</button>
   </nav>
 </div>
 <router-outlet></router-outlet>
