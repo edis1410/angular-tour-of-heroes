@@ -1,45 +1,32 @@
 import { Component, Input } from '@angular/core';
 import { Hero } from '../hero';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
-import { LoginService } from '../login.service';
+import { Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
 })
 export class HeroDetailComponent {
-  @Input() hero?: Hero;
+  hero$: Observable<Hero> = this.route.params.pipe(
+    switchMap((params: Params) => this.heroService.getHero(params['id']))
+  );
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location,
-    private login: LoginService,
-    private router: Router
+    private location: Location
   ) {}
-
-  ngOnInit(): void {
-    if (this.login.loggedIn === false) {
-      this.router.navigate(['/login']);
-    }
-    else
-    this.getHero();
-  }
-
-  getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));
-  }
 
   goBack(): void {
     this.location.back();
   }
 
-  save(): void {
-    if (this.hero) {
-      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
-    }
-  }
+  // save(): void {
+  //   if (this.hero) {
+  //     this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+  //   }
+  // }
 }

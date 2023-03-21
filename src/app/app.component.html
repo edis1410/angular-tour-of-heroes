@@ -1,30 +1,32 @@
 <div class="m-0 h-12 w-full bg-slate-500 p-0 align-baseline">
   <h1
-    class="inline-block h-12 w-1/2 align-top select-none pl-8 font-sans text-3xl font-bold"
+    class="inline-block h-12 w-1/2 select-none pl-8 align-top font-sans text-3xl font-bold"
     routerLink="/dashboard"
   >
     {{ title }}
   </h1>
-  <nav class="inline-block h-12 w-1/2 text-right">
+  <nav *ngIf="isLoggedIn$ | async" class="inline-block h-12 w-1/2 text-right">
     <a
-      *ngIf="login.isLoggedIn()" 
       class="mr-4 inline-block h-12 p-1 no-underline hover:text-slate-400"
       routerLink="/dashboard"
       >Dashboard</a
     >
     <a
-      *ngIf="login.isLoggedIn()" 
       class="mr-4 inline-block h-12 p-1 no-underline hover:text-slate-400"
       routerLink="/heroes"
       >Heroes</a
     >
     <a
-      *ngIf="login.isLoggedIn()" 
       class="mr-4 inline-block h-12 p-1 no-underline hover:text-slate-400"
       routerLink="/star-wars"
       >Star Wars</a
     >
-    <button *ngIf="login.isLoggedIn()" (click)="logOutTry()" class="mr-6 border p-2 rounded-md bg-red-100 hover:bg-red-300">Log out</button>
+    <button
+      (click)="logOutTry()"
+      class="mr-6 rounded-md border bg-red-100 p-2 hover:bg-red-300"
+    >
+      Log out
+    </button>
   </nav>
 </div>
 <router-outlet></router-outlet>

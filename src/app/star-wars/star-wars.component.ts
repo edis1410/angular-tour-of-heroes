@@ -1,25 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable, scan } from 'rxjs';
 import { StarWarsFacadeService } from '../star-wars-facade.service';
 import { Person } from '../person';
-import { LoginService } from '../login.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-star-wars',
   templateUrl: './star-wars.component.html',
   styleUrls: ['./star-wars.component.css'],
 })
-export class StarWarsComponent implements OnInit {
+export class StarWarsComponent {
   public people$: Observable<Person[]> = this.swfs.getPeople$();
 
   sortedColumn$ = new BehaviorSubject<string>('');
 
-  constructor(
-    private swfs: StarWarsFacadeService,
-    private login: LoginService,
-    private router: Router
-  ) {
+  constructor(private swfs: StarWarsFacadeService) {
     this.people$ = combineLatest([
       this.swfs.getPeople$(),
       this.sortDirection$,
@@ -28,11 +22,6 @@ export class StarWarsComponent implements OnInit {
         !sort.col ? list : this.sortByColumn(list, sort.col, sort.dir)
       )
     );
-  }
-  ngOnInit(): void {
-    if (this.login.loggedIn === false) {
-      this.router.navigate(['/login']);
-    }
   }
 
   sortDirection$ = this.sortedColumn$.pipe(
