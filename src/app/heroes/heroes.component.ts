@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -46,7 +46,7 @@ export class HeroesComponent {
   constructor(
     private heroService: HeroService,
     private fb: FormBuilder,
-    private heroesFasadeService: ObservableService
+    private heroesFasadeService: ObservableService,
   ) {}
 
   public add(): void {

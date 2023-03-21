@@ -15,10 +15,13 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  logErr = false;
+  public logErr: boolean = false;
 
   public loginForm = this.fb.group({
-    email: this.fb.control<string | null>(null, [Validators.required, Validators.email]),
+    email: this.fb.control<string | null>(null, [
+      Validators.required,
+      Validators.email,
+    ]),
     password: this.fb.control<string>('', [
       Validators.required,
       Validators.min(6),
@@ -34,11 +37,19 @@ export class LoginComponent {
   public attemptLogin(): void {
     if (this.loginForm.valid) {
       this.login.loginTry(this.email?.value!, this.password?.value!).then(
-        () => this.router.navigate(['/dashboard']),
-        () => (this.logErr = true)
+        () => this.onSuccess(),
+        () => this.onFail()
       );
     } else {
       console.log('Handle errors');
     }
+  }
+
+  public onSuccess(): void {
+    this.router.navigate(['dashboard']);
+  }
+
+  public onFail(): void {
+    this.logErr = true;
   }
 }
