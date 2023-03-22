@@ -10,13 +10,13 @@ import { FormBuilder, Validators } from '@angular/forms';
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
 })
-export class HeroDetailComponent implements OnInit{
+export class HeroDetailComponent implements OnInit {
   hero$: Observable<Hero> = this.route.params.pipe(
     switchMap((params: Params) => this.heroService.getHero(params['id']))
   );
-  
-    public heroDetailForm = this.fb.group({
-    id: this.fb.control<number | null>({value: null, disabled: true}),
+
+  public heroDetailForm = this.fb.group({
+    id: this.fb.control<number | null>({ value: null, disabled: true }),
     name: this.fb.control<string | null>(null, [Validators.required]),
     age: this.fb.control<number | null>(null, [
       Validators.min(0),
@@ -30,16 +30,18 @@ export class HeroDetailComponent implements OnInit{
     private location: Location,
     private fb: FormBuilder
   ) {}
-  
+
   ngOnInit(): void {
-    this.route.params.pipe(
-      switchMap((params: Params) => this.heroService.getHero(params['id']))
-      ).subscribe((data: Hero) => {
+    this.route.params
+      .pipe(
+        switchMap((params: Params) => this.heroService.getHero(params['id']))
+      )
+      .subscribe((data: Hero) => {
         this.heroDetailForm.setValue({
           id: data.id,
           name: data.name,
-          age: data.age
-        })
+          age: data.age,
+        });
       });
   }
 
@@ -51,12 +53,13 @@ export class HeroDetailComponent implements OnInit{
   }
 
   goBack(): void {
-    console.log('lol')
     this.location.back();
   }
 
   save(): void {
     const heroFormData = this.heroDetailForm.getRawValue();
-      this.heroService.updateHero(heroFormData as Hero).subscribe(() => this.goBack());
+    this.heroService
+      .updateHero(heroFormData as Hero)
+      .subscribe(() => this.goBack());
   }
 }
