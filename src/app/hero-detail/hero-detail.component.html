@@ -1,13 +1,12 @@
 <div class="mt-4 ml-4" *ngIf="hero$ | async as hero">
   <h2 class="text-xl font-bold">{{ hero.name | uppercase }} Details</h2>
-  <form class="mt-4 ml-4" [formGroup]="heroDetailForm">
-    <label class="block" for="hero-name">ID: </label>
+  <form class="mt-4 ml-4" [formGroup]="heroDetailForm" (ngSubmit)="save()">
+    <label class="" for="hero-name">ID: </label>
     <input
-      class="pointer-events-none w-52 appearance-none rounded border-2 border-gray-200 bg-gray-200 py-2 px-4 leading-tight text-gray-700 focus:border-slate-500 focus:bg-white focus:outline-none"
+      class="w-44 appearance-none rounded border-2 border-gray-200 bg-gray-400 py-2 px-4 leading-tight text-gray-700 focus:border-slate-500 focus:bg-white focus:outline-none"
       id="id"
       type="text"
       formControlName="id"
-      placeholder= {{hero.id}}
     />
 
     <label class="mt-4 block" for="hero-name">Hero Name: </label>
@@ -19,7 +18,13 @@
       formControlName="name"
       required
     />
-
+    <div
+      *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+      class="relative w-52 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+    >
+      The name can't be empty.
+    </div>
+    
     <label class="mt-4 block" for="age">Age: </label>
     <input
       class="w-52 appearance-none rounded border-2 border-gray-200 bg-gray-200 py-2 px-4 leading-tight text-gray-700 focus:border-slate-500 focus:bg-white focus:outline-none"
@@ -29,21 +34,28 @@
       formControlName="age"
       required
     />
+    <div
+      *ngIf="age?.invalid && (age?.dirty || age?.touched)"
+      class="relative w-52 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+    >
+      The age must be 0 or higher.
+    </div>
+
     <div class="mt-4 block">
       <button
         class="mr-2 inline-block rounded border-b-4 border-slate-700 bg-slate-500 py-2 px-4 font-bold text-white hover:border-slate-500 hover:bg-slate-400"
-        (click)="goBack()"
       >
         Go back
       </button>
+
       <button
         class="inline-block rounded border-b-4 border-slate-700 bg-slate-500 py-2 px-4 font-bold text-white hover:border-slate-500 hover:bg-slate-400"
         id="submit"
-        (click)="save()"
         [disabled]="!heroDetailForm.valid"
       >
         Save
       </button>
     </div>
+
   </form>
 </div>

@@ -16,7 +16,7 @@ export class HeroDetailComponent implements OnInit{
   );
   
     public heroDetailForm = this.fb.group({
-    id: this.fb.control<number | null>(null),
+    id: this.fb.control<number | null>({value: null, disabled: true}),
     name: this.fb.control<string | null>(null, [Validators.required]),
     age: this.fb.control<number | null>(null, [
       Validators.min(0),
@@ -32,12 +32,26 @@ export class HeroDetailComponent implements OnInit{
   ) {}
   
   ngOnInit(): void {
-    this.heroDetailForm.get('id')?.setValue(1);
-    this.heroDetailForm.get('name')?.setValue('neki');
-    this.heroDetailForm.get('age')?.setValue(20);
+    this.route.params.pipe(
+      switchMap((params: Params) => this.heroService.getHero(params['id']))
+      ).subscribe((data: Hero) => {
+        this.heroDetailForm.setValue({
+          id: data.id,
+          name: data.name,
+          age: data.age
+        })
+      });
+  }
+
+  get name() {
+    return this.heroDetailForm.get('name');
+  }
+  get age() {
+    return this.heroDetailForm.get('age');
   }
 
   goBack(): void {
+    console.log('lol')
     this.location.back();
   }
 
